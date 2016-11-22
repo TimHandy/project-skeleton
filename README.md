@@ -63,6 +63,8 @@ Rule 5 - Put Your Long npm Scripts in a scripts Directory
 
 
 src/		// src is what webpack uses to bundle all front-end code right? Maybe the src file is just front end stuff, and the other backend Express stuff should be in a dir named 'server' as it doesn't get bundled? or does it? Maybe don't need a 'src' dir and instead just use 'app' and point webpack at app as the source dir?
+
+If app is just a front end, or just backend, like if its j
 	
 	app/ 	// backend logic? or fronted stuff also? should app go in the src file? it's going to be private anyway, so maybe should be in the root? though does webpack pick and choose the required files and bundle them anyway?
 		
