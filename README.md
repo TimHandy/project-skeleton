@@ -2,17 +2,20 @@
 Project directory structure
 =============================
 
+This is ONE way to do it, not THE way to do it.
+
 Example of how to structure here: https://blog.risingstack.com/node-hero-node-js-project-structure-tutorial/
 
 ## Rule 1 - Organize your Files Around Features, Not Roles
 
-The style of keeping all css together, all controllers together etc in a css/controllers dir is old-school thinking. 
+The style of keeping all css together, all controllers together etc in a css/controllers dir is old-school thinking. With tools like Webpack it doesn't matter where your files physically live.
 
 Principles - keep files together that work together in a dir named for the module/component. 
 
 * Easier to find, don't have to open multiple dirs to work with the code. 
 * Easier to maintain, grow, move/remove features this way. 
-* Relative links to other files are generally shorter
+* Easier for devs to find related files, don't have to jump around multiple dirs 
+* Relative links to other files are generally shorter this way
 
 
 ## Rule 2 - Don't Put Logic in index.js Files. Use these files only to export functionality, like:
@@ -25,7 +28,9 @@ Principles - keep files together that work together in a dir named for the modul
 		}
 		
 
-## Rule 3 - Place Your Test Files Next to The Implementation. Put your additional test files to a separate test folder to avoid confusion.
+## Rule 3 - Place Your Test Files Next to The Implementation. 
+
+Put your additional test files to a separate test folder to avoid confusion.
 
 		.
 		├── test
@@ -73,7 +78,41 @@ Create a separate directory for your additional long scripts in package.json
 
 
 
-## Front-end files/dirs
+# Front-end files/dirs
+
+	.
+	├── build
+	│   ├── bundle.js
+	│   └── index.html
+	├── client
+	│   ├── dashboards
+	│   │   ├── admin-dash
+	│   │   │   ├── admin-dash.controller.js
+	│   │   │   ├── admin-dash.html
+	│   │   │   ├── admin-dash.model.js
+	│   │   │   └── admin-dash.test.js
+	│   │   └── supplier-dash
+	│   │       ├── supplier-dash.controller.js
+	│   │       ├── supplier-dash.html
+	│   │       ├── supplier-dash.model.js
+	│   │       └── supplier-dash.test.js
+	│   ├── index.html
+	│   ├── index.js
+	│   ├── recipe
+	│   │   ├── recipe.controller.js
+	│   │   ├── recipe.helper.js
+	│   │   ├── recipe.html
+	│   │   ├── recipe.model.js
+	│   │   ├── recipe.sass
+	│   │   ├── recipe.service.js
+	│   │   └── recipe.test.js
+	│   ├── shopping-cart
+	│   │   ├── shopping-cart.controller.js
+	│   │   └── shopping-cart.model.js
+	│   └── test
+	│       └── setup.spec.js
+
+
 
 	src/ 
 is the source of your files. If you have a front-end and back-end it might be better to have two dirs, a 'client' and a 'server' dir.
@@ -143,7 +182,19 @@ Some react thing. There appears to also be reducers in the component dirs
 
 
 
-## Back-end server files/dirs
+# Back-end server files/dirs
+
+	├── server
+	│   ├── app.js or server.js
+	│   ├── Procfile
+	│   ├── reducers.js
+	│   ├── routes.js
+	│   ├── thing.test.js
+	│   └── test
+	│       └── setup.spec.js
+	├── config
+	│   ├── index.js
+	│   └── server.js
 
 	server/ 	
 all private backend files. This is where all Express files should go. i.e. those that don't require webpack to bundle for the browser. How do you deploy the backend? David at hack-night suggests just using git to deploy to Heroku etc. 
@@ -161,7 +212,30 @@ Just the routes, linking to the relevant controllers in the module dirs, like we
 AKA 'public' or 'assets' Static pages like About Us, Privacy Policy etc. Maybe also these files could just go in root of app? untidy? what about images? they stay with the module dir surely? Does webpack scoop them up? This dir would go in the server dir. This would go in the server dir and be a back-end dir.
 
 
-## General Development files/dir
+# General Development files/dir
+
+	.
+	├── scripts
+	│   ├── build.js
+	│   ├── bundle.js
+	│   ├── clean.js
+	│   ├── copy.js
+	│   ├── deploy.js
+	│   ├── run.js
+	│   ├── runserver.js
+	│   └── start.js
+	├── .babelrc
+	├── .editorconfig
+	├── .env
+	├── .env-sample
+	├── .eslintignore
+	├── .eslintrc.json
+	├── .gitignore
+	├── package.json
+	├── README.md
+	└── webpack.config.js
+
+
 
 	scripts/
 Long npm Scripts, ie. ones not run in a single one-liner in package.json?
@@ -236,7 +310,7 @@ This contains a copy of .env but with the passwords removed. It is included in g
 
 
 
-## Notes
+# Notes
 
 How to separate the server from the frontend? Use 'server' and 'client' dirs
 
