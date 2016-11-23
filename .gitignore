@@ -1,0 +1,8 @@
+node_modules/
+
+# webpack build dirs 
+dist/
+build/
+
+# Environment Var Passwords using dotenv package
+.env    
